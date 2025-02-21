@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Amor</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; transition: background 1s, opacity 1s; }
+        .inicio { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            background: #fce2c4; 
+            text-align: center; 
+        }
+        .oculto { opacity: 0; background: white; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .boton { 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border: 1px solid black; 
+            background: white; 
+            cursor: pointer; 
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="inicio" id="inicio">
+        <img src="image.png" alt="Imagen de amor" style="max-width: 100%; height: auto;">
+        <button class="boton" onclick="cambiarPagina()">PULSA AQUÍ AMOR</button>
+    </div>
+    
+    <div class="oculto" id="mensaje">
+        <h1>❤️❤️❤️PALMA, Te amo con todo mi corazón ❤️❤️❤️</h1>
+    </div>
+    
+    <script>
+        function cambiarPagina() {
+            document.getElementById('inicio').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('inicio').style.display = 'none';
+                document.getElementById('mensaje').style.opacity = '1';
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
