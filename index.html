@@ -6,17 +6,26 @@
     <title>Página de Amor</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; transition: background 1s, opacity 1s; }
-        .inicio { 
+        body { 
+            font-family: Arial, sans-serif; 
+            transition: background 1s, opacity 1s;
+            background: #fce2c4; 
+            text-align: center;
+        }
+        .inicio, .oculto { 
             display: flex; 
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
             height: 100vh; 
-            background: #fce2c4; 
-            text-align: center; 
+            width: 100vw;
         }
-        .oculto { opacity: 0; background: white; height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .inicio { background: #fce2c4; }
+        .oculto { 
+            opacity: 0; 
+            background: white; 
+            transition: opacity 1s;
+        }
         .boton { 
             padding: 10px 20px; 
             font-size: 16px; 
@@ -24,6 +33,16 @@
             background: white; 
             cursor: pointer; 
             margin-top: 20px;
+        }
+        img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: opacity 1s;
+        }
+        h1, h2 {
+            padding: 20px;
         }
     </style>
 </head>
@@ -34,17 +53,52 @@
     </div>
     
     <div class="oculto" id="mensaje">
-        <h1>❤️❤️❤️PALMA, Te amo con todo mi corazón ❤️❤️❤️</h1>
+        <h1>❤️❤️❤️ PALMA, Te amo con todo mi corazón ❤️❤️❤️</h1>
     </div>
-    
+
     <script>
+        const fotos = [
+            "IMG_5281.HEIC",
+            "IMG_5293.HEIC",
+            "IMG_5301.HEIC",
+            "IMG_5359.HEIC",
+            "IMG_5458.HEIC",
+            "IMG_5494.HEIC",
+            "IMG_5541.HEIC",
+            "IMG_5543.HEIC"
+        ];
+
+        let index = 0;
+        let mostrandoFotos = false;
+
         function cambiarPagina() {
             document.getElementById('inicio').style.opacity = '0';
             setTimeout(() => {
                 document.getElementById('inicio').style.display = 'none';
-                document.getElementById('mensaje').style.opacity = '1';
+                const mensaje = document.getElementById('mensaje');
+                mensaje.style.opacity = '1';
+                mostrandoFotos = true;
             }, 1000);
         }
+
+        document.addEventListener('click', () => {
+            if (!mostrandoFotos) return;
+
+            const mensaje = document.getElementById('mensaje');
+            mensaje.innerHTML = '';
+
+            if (index < fotos.length) {
+                const img = document.createElement('img');
+                img.src = fotos[index];
+                mensaje.appendChild(img);
+                index++;
+            } else {
+                const final = document.createElement('h2');
+                final.innerText = "💖 Este proyecto de amor, lo podrás ver completo muy pronto mi majestad. MWAH MWAH 💖";
+                mensaje.appendChild(final);
+                mostrandoFotos = false;
+            }
+        });
     </script>
 </body>
 </html>
